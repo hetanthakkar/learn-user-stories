@@ -64,3 +64,26 @@ try {
 } catch (error) {
     console.log('Withdraw from non-existent account scenario passed.');
 }
+
+// Check Account Balance User Story
+
+// Scenario 1: Successfully check balance of an account
+const account = bank.createAccount('James Smith', 30, '1234');
+try {
+    const balance = bank.checkBalance('1234');
+    if(balance === account.balance) {
+        console.log('Balance Check passed.');
+    } else {
+        console.log('Balance Check failed.');
+    }
+} catch (error) {
+    console.log('Balance Check failed.');
+}
+
+// Scenario 2: Check Balance of Invalid Account
+try {
+    bank.checkBalance('9898989');
+    console.log('Can\'t fetch balance of an invalid account');
+} catch (error) {
+    console.log('Balance check of invalid account passed.');
+}
