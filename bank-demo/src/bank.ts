@@ -45,4 +45,22 @@ export default class Bank {
         return account;
     }
 
+    /**
+     * Deposit money to the specified account.
+     * @param {number} depositAmount - The amount to deposit into the account.
+     * @param {string} accountNumber - The number of the account to deposit money into.
+     * @returns {BankAccount} - The account with the updated balance.
+     */
+    public depositMoney(depositAmount: number, accountNumber: string): BankAccount {
+        if (depositAmount <= 0) {
+            throw new Error('Deposit amount must be greater than zero');
+        }
+        const account = this.isAccountExists(accountNumber);
+        if (!account) {
+            throw new Error('Account not found');
+        }
+        account.balance += depositAmount;
+        return account;
+    }
+
 }
