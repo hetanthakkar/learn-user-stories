@@ -63,4 +63,24 @@ export default class Bank {
         return account;
     }
 
+    /**
+     * Withdraws money from the specified account.
+     * @param {number} withdrawAmount - The amount to withdraw from the account.
+     * @param {string} accountNumber - The number of the account to withdraw money from.
+     * @returns {BankAccount} - The account with the updated balance.
+     */
+    public withdrawMoney(withdrawAmount: number, accountNumber: string): BankAccount {
+        if (withdrawAmount <= 0) {
+            throw new Error('Withdraw amount must be greater than zero');
+        }
+        const account = this.isAccountExists(accountNumber);
+        if (!account) {
+            throw new Error('Account not found');
+        } else if (account.balance < withdrawAmount) {
+            throw new Error('Withdraw amount exceeds available balance.');
+        }
+        account.balance -= withdrawAmount;
+        return account;
+    }
+
 }
